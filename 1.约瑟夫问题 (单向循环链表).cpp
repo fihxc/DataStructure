@@ -1,5 +1,5 @@
 /*
-0.Ô¼Éª·òÎÊÌâ (Ë«ÏòÁ´±í)
+1.çº¦ç‘Ÿå¤«é—®é¢˜ (å•å‘å¾ªç¯é“¾è¡¨)
 */
 #include <cstdio>
 #include <cstdlib>
@@ -37,7 +37,7 @@ void del(Node *p)
 int main()
 {
 	int n, k, m;
-	scanf("%d%d%d", &n, &k, &m);
+	scanf("%d,%d,%d", &n, &k, &m);
 	if (n < 1 || k < 1 || m < 1)
 	{
 		printf("n,m,k must bigger than 0.\n");
