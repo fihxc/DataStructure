@@ -1,3 +1,4 @@
+//Singly linked list
 template<class T>
 class List
 {
@@ -6,7 +7,8 @@ private:
 	{
 		T data;
 		Node *next;
-		Node(T data = -1, Node *next = NULL) : data(data), next(next) {}
+		Node() : next(NULL) {}
+		Node(T data, Node *next = NULL) : data(data), next(next) {};
 	};
 	Node *head, *tail;
 	int size;
@@ -23,20 +25,21 @@ private:
 		if (p == tail) tail = p->next;
 		return p->next;
 	}
-	void _del_after(Node *p)
+	T _del_after(Node *p)
 	{
 		Node *q = p->next;
+		T tmp = q->data;
 		if (q == tail) tail = p;
 		p->next = q->next;
 		delete q;
 		size--;
+		return tmp;
 	}
 
 public:
 	List()
 	{
-		tail = new Node();
-		head = new Node(-1, tail);
+		head = new Node();
 		tail = head;
 		size = 0;
 	}
@@ -59,8 +62,9 @@ public:
 		}
 		iterator operator+(int n)
 		{
-			for (int i = 1; i <= n; i++) p = p->next;
-			return iterator(p);
+			Node *q = p;
+			for (int i = 1; i <= n; i++) q = q->next;
+			return iterator(q);
 		}
 		bool operator==(iterator &it)
 		{
@@ -77,33 +81,32 @@ public:
 	};
 
 	//Insert an item
-	iterator& insert_after(iterator& it, T x)
+	iterator insert_after(iterator it, T x)
 	{
-		it.p = _insert_after(it.p, x);
-		return it;
+		return iterator(_insert_after(it.p, x));
 	}
 	T insert(int pos, T x)
 	{
 		Node *p = _forward(head, pos);
 		return _insert_after(p, x)->data;
 	}
-	int insert(T x)
+	T insert(T x)
 	{
 		return insert(0, x);
 	}
-	iterator append(T x)
+	T append(T x)
 	{
-		return iterator(_insert_after(tail, x));
+		return _insert_after(tail, x)->data;
 	}
 
 	//Delete an item
-	void del_after(iterator& it)
+	T del_after(iterator& it)
 	{
-		_del_after(it.p);
+		return _del_after(it.p);
 	}
-	void del(int pos)
+	T del(int pos)
 	{
-		_del_after(_forward(head, pos));
+		return _del_after(_forward(head, pos));
 	}
 
 	iterator begin()
