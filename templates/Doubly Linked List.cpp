@@ -28,7 +28,7 @@ private:
 		for (int i = 1; i <= n; i++) p = p->next;
 		return p;
 	}
-	Node *_back(Node *p)
+	Node *_back(Node *p, int n)
 	{
 		for (int i = 1; i <= n; i++) p = p->pre;
 		return p;

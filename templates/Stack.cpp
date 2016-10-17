@@ -11,7 +11,7 @@ public:
 		t = base = (T *)malloc(sizeof(T) * len);
 	}
 
-	void push(T x)
+	void push(const T& x)
 	{
 		if (t - base + 1 == len)
 		{
