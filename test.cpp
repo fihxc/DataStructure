@@ -6,6 +6,6 @@ const int N = 1e6 + 10;
 
 int main()
 {
-    
+    printf("Hello world!\n");
     return 0;
 }
