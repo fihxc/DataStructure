@@ -1,5 +1,5 @@
 /*
-以邻接矩阵存储的图的遍历(DFS+BFS)
+以静态邻接表存储的图的遍历(DFS+BFS)
 
 INPUT
 节点数n，边数m
@@ -16,49 +16,70 @@ OUTPUT
 using namespace std;
 const int INF = 0x7f7f7f7f;
 const int N = 1e3 + 10;
+const int M = 1e3 + 10;
 
+struct Edge
+{
+    int to, next;
+} edge[M];
+int head[N], no;
 int n, m;
-bool map[N][N];
+
+void init()
+{
+    memset(head, -1, sizeof(head));
+    no = 0;    
+}
+
+void add(int u, int v)
+{
+    edge[no].to = v;
+    edge[no].next = head[u];
+    head[u] = no++;
+}
 
 bool vis[N];
 void dfs(int u)
 {
-    printf("%d ", u); vis[u] = true;
-    for (int v = 1; v <= n; v++)
-        if (map[u][v] && !vis[v])
+    printf("%d ", u);
+    vis[u] = true;
+    for (int i = head[u]; i != -1; i = edge[i].next)
+        if (!vis[edge[i].to])
         {
-            dfs(v);
+            dfs(edge[i].to);
         }
 }
 
 queue<int> q;
 void bfs(int start)
 {
-    while (!q.empty()) q.pop();
     memset(vis, false, sizeof(vis));
+    while (!q.empty()) q.pop();
     printf("%d ", start);
     q.push(start); vis[start] = true;
     while (!q.empty())
     {
         int from = q.front(); q.pop();
-        for (int to = 1; to <= n; to++)
-            if (map[from][to] && !vis[to])
+        for (int i = head[from]; i != -1; i = edge[i].next)
+            if (!vis[edge[i].to])
             {
-                printf("%d ", to);
-                q.push(to); vis[to] = true;
+                Edge &e = edge[i];
+                printf("%d ", e.to);
+                q.push(e.to); vis[e.to] = true;
             }
     }
 }
 
 int main()
 {
-    memset(map, false, sizeof(map));
     scanf("%d%d", &n, &m);
+    init();
     while (m--)
     {
         int u, v;
         scanf("%d%d", &u, &v);
-        map[u][v] = map[v][u] = true;
+        add(u, v);
+        add(v, u);
     }
 
     memset(vis, false, sizeof(vis));
@@ -84,7 +105,7 @@ SAMPLE INPUT
 6 7
 
 SAMPLE OUTPUT
-1 2 4 8 5 3 6 7 
-1 2 3 4 5 6 7 8 
+1 3 7 6 2 5 8 4 
+1 3 2 7 6 5 4 8 
 
 */

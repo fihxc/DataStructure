@@ -10,7 +10,7 @@
         {
             "taskName": "g++",
             "suppressTaskName": true,
-            "args": ["g++", "${file}", "-g", "-o", "${fileBasename}.exe"],
+            "args": ["g++", "${fileBasename}", "-g", "-o", "${fileBasename}.exe"],
             "isBuildCommand": true,
             "problemMatcher": {
                 "owner": "cpp",
@@ -28,7 +28,7 @@
         {
             "taskName": "run",
             "suppressTaskName": true,
-            "args": ["${fileBasename}.exe"],
+            "args": ["${fileBasename}.exe", "<in.txt"],
             "isTestCommand": true
         }
     ]
