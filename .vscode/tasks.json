@@ -10,6 +10,23 @@
         {
             "taskName": "g++",
             "suppressTaskName": true,
+            "args": ["g++", "${fileBasename}", "-g", "-o", "${fileBasename}.exe"],
+            "problemMatcher": {
+                "owner": "cpp",
+                "fileLocation": ["relative", "${workspaceRoot}"],
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            }
+        },
+        {
+            "taskName": "g++ && run",
+            "suppressTaskName": true,
             "args": ["g++", "${fileBasename}", "-g", "-o", "${fileBasename}.exe", "&&", "${fileBasename}.exe", "<in.txt"],
             "isBuildCommand": true,
             "problemMatcher": {
