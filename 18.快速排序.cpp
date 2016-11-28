@@ -48,7 +48,6 @@ void quickSort(int a[], int left, int right)
 
 int main()
 {
-    freopen("in.txt", "r", stdin);
     n = 0;
     memset(a, 0x7f, sizeof(a));
     while (scanf("%d", &a[n]), a[n] != INF) n++;
@@ -64,6 +63,7 @@ int main()
     else
     {
         for (int i = 0; i < num; i++) printf("%d ", tmp[i]);
+        printf("\n");
     }
     return 0;
 }
