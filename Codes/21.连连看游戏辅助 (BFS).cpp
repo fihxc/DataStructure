@@ -1,5 +1,5 @@
 /*
-S13.连连看游戏辅助 (BFS)
+21.连连看游戏辅助 (BFS)
 */
 #include <cstdio>
 #include <cstring>
