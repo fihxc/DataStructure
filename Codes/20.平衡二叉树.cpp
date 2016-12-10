@@ -1,6 +1,9 @@
 /************************************************************
 20.平衡二叉树
 
+Description
+程序输入一个字符串（只包含小写字母），请按照字符的输入顺序建立平衡二叉排序树，
+并分别输出二叉树的先序序列、中序序列和后序序列，最后输出该二叉树向左旋转 90 度后的结构。
 ************************************************************/
 #include <cstdio>
 #include <cstring>
@@ -125,20 +128,50 @@ void pre_order(Node *T)
     pre_order(T->right);
 }
 
+void in_order(Node *T)
+{
+    if (T == NULL) return;
+    in_order(T->left);
+    printf("%c", T->data);
+    in_order(T->right);
+}
+
+void post_order(Node *T)
+{
+    if (T == NULL) return;
+    post_order(T->left);
+    post_order(T->right);
+    printf("%c", T->data);
+}
+
+void indent(Node *T, int deep)
+{
+    if (T == NULL) return;
+    indent(T->right, deep + 1);
+    for (int i = 1; i <= deep; i++) printf("    ");
+    printf("%c\n", T->data);
+    indent(T->left, deep + 1);
+}
+
 int main()
 {
     init();
     char c;
     while ((c = getchar()) != '\n') insert(T, c);
-    pre_order(T); printf("\n");
+
+    printf("Preorder: ");
+    pre_order(T);
+    printf("\n");
+
+    printf("Inorder: ");
+    in_order(T);
+    printf("\n");
+
+    printf("Postorder: ");
+    post_order(T);
+    printf("\n");
+
+    printf("Tree:\n");
+    indent(T, 0);
     return 0;
 }
-
-/********************
-Input
-agxnzyimk
-
-Output
-xigamknzy
-
-********************/

@@ -1,6 +1,4 @@
 {
-    // See https://go.microsoft.com/fwlink/?LinkId=733558
-    // for the documentation about the tasks.json format
     "version": "0.1.0",
     "command": "cmd",
     "isShellCommand": true,
@@ -8,9 +6,9 @@
     "showOutput": "always",
     "tasks": [
         {
-            "taskName": "g++",
+            "taskName": "Complie",
             "suppressTaskName": true,
-            "args": ["g++", "${fileBasename}", "-g", "-o", "${fileBasename}.exe"],
+            "args": ["g++", "main.cpp", "-g", "-o", "main.exe"],
             "problemMatcher": {
                 "owner": "cpp",
                 "fileLocation": ["relative", "${workspaceRoot}"],
@@ -25,9 +23,9 @@
             }
         },
         {
-            "taskName": "g++ && run",
+            "taskName": "Complie && Run",
             "suppressTaskName": true,
-            "args": ["g++", "${fileBasename}", "-g", "-o", "${fileBasename}.exe", "&&", "${fileBasename}.exe", "<in.txt"],
+            "args": ["g++", "main.cpp", "-o", "main.exe", "&&", "main.exe", "<in.txt"],
             "isBuildCommand": true,
             "problemMatcher": {
                 "owner": "cpp",
@@ -43,9 +41,9 @@
             }
         },
         {
-            "taskName": "run",
+            "taskName": "Run",
             "suppressTaskName": true,
-            "args": ["${fileBasename}.exe", "<in.txt"],
+            "args": ["main.exe", "<in.txt"],
             "isTestCommand": true
         }
     ]
